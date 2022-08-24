@@ -1,3 +1,18 @@
 ---
+
 dependencies:
-  - role: ansible_role_epel
+  - src: https://github.com/mattias-jonsson/ansible_role_epel
+    scm: git
+    version: main
+    name: ansible_role_epel
+
+galaxy_info:
+  author: Mattias Jonsson
+  description: Installs and configures nrpe and plugins and optional custom scripts on supported distributions.
+  min_ansible_version: 2.9.27
+  role_name: ansible_role_nrpe
+  license: MIT
+  platforms:
+  - name: EL
+    versions:
+    - "7"

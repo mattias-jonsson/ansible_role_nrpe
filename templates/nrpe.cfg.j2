@@ -1,0 +1,35 @@
+# {{ ansible_managed }}
+
+# max_commands=0
+# nasty_metachars="|`&><'\\[]{};\r\n"
+#allow_weak_random_seed=1
+#command_prefix=/usr/bin/sudo
+#keep_env_vars=NRPE_MULTILINESUPPORT,NRPE_PROGRAMVERSION
+#log_file=/var/run/nrpe.log
+#ssl_cacert_file=/etc/ssl/servercerts/ca-cert.pem
+#ssl_cert_file=/etc/ssl/servercerts/nagios-cert.pem
+#ssl_cipher_list=ALL:!aNULL:!eNULL:!SSLv2:!LOW:!EXP:!RC4:!MD5:@STRENGTH
+#ssl_cipher_list=ALL:!MD5:@STRENGTH
+#ssl_cipher_list=ALL:!MD5:@STRENGTH:@SECLEVEL=0
+#ssl_client_certs=0
+#ssl_logging=0x00
+#ssl_privatekey_file=/etc/ssl/servercerts/nagios-key.pem
+#ssl_use_adh=1
+#ssl_version=SSLv2+
+allow_bash_command_substitution=0
+allowed_hosts={{ ansible_role_nrpe_hosts }}
+command_timeout={{ ansible_role_nrpe_command_timeout }}
+connection_timeout={{ ansible_role_nrpe_connection_timeout }}
+debug=0
+disable_syslog=0
+dont_blame_nrpe=0
+include_dir=/etc/nrpe.d/
+listen_queue_size={{ ansible_role_nrpe_queuesize }}
+log_facility=daemon
+nrpe_group=nrpe
+nrpe_user=nrpe
+pid_file=/var/run/nrpe/nrpe.pid
+server_address={{ ansible_role_nrpe_server_address }}
+server_port={{ ansible_role_nrpe_port }}
+
+include_dir=/etc/nrpe.d/

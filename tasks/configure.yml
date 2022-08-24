@@ -1,0 +1,50 @@
+---
+
+- name: create /etc/nagios/nrpe.cfg from template
+  become: true
+  template:
+    src: nrpe.cfg.j2
+    dest: /etc/nagios/nrpe.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nrpe
+
+- name: create custom_commands.cfg in /etc/nrpe.d from template
+  become: true
+  template:
+    src: nrpe.d.cfg.j2
+    dest: /etc/nrpe.d/custom_commands.cfg
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ ansible_role_nrpe_commands }}"
+  notify: restart nrpe
+
+- name: create scripts directory if missing
+  become: true
+  file:
+    path: /usr/local/scripts
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
+- name: create custom scripts from variables
+  become: true
+  copy:
+    content: '{{ item.data }}'
+    dest: /usr/local/scripts/{{ item.name }}
+    owner: root
+    group: root
+    mode: 0750
+  when: item.state | lower == "present"
+  loop: "{{ ansible_role_nrpe_scripts }}"
+  no_log: true
+
+- name: remove custom scripts with state set to absent
+  become: true
+  file:
+    path: /usr/local/scripts/{{ item.name }}
+    state: '{{ item.state if item.state | lower == "absent" else "file" }}'
+  loop: "{{ ansible_role_nrpe_scripts }}"

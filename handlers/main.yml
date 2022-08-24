@@ -1,0 +1,7 @@
+---
+
+- name: restart nrpe
+  become: true
+  service:
+    name: nrpe
+    state: restarted

@@ -1,0 +1,19 @@
+---
+
+- name: install nrpe + nagios-plugins
+  become: true
+  yum:
+    name: "{{ ansible_role_nrpe_packages }}"
+    lock_timeout: 300
+    state: present
+    update_cache: yes
+
+- name: install extra nagios plugins
+  become: true
+  yum:
+    name: "{{ ansible_role_nrpe_extra_packages }}"
+    lock_timeout: 300
+    state: present
+    update_cache: yes
+
+

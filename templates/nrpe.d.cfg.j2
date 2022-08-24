@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for loop_item in ansible_role_nrpe_commands %}
+command[{{ loop_item.command }}]={{ loop_item.command_path }} {{ loop_item.command_arguments }}
+{% endfor %}

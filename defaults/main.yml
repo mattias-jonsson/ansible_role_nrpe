@@ -1,0 +1,11 @@
+---
+
+ansible_role_nrpe_extra_packages: []
+ansible_role_nrpe_port: 5666
+ansible_role_nrpe_hosts: 127.0.0.1,::1
+ansible_role_nrpe_command_timeout: 60
+ansible_role_nrpe_connection_timeout: 300
+ansible_role_nrpe_queuesize: 5
+ansible_role_nrpe_server_address: "{{ ansible_default_ipv4.address }}"
+ansible_role_nrpe_commands: []
+ansible_role_nrpe_scripts: []

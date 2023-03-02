@@ -18,43 +18,17 @@ Role Variables
 
 Available variables are listed below, along with default values where applicable (see `defaults/main.yml`):
 
-
-    ansible_role_nrpe_extra_packages:
-
-List of extra packages to install, should contain a list of nagios plugins needed for checks.
-
-    ansible_role_nrpe_port:
-
-Listening port for nrpe daemon, must be an non-privileged port (i.e > 1024).
-
-    ansible_role_nrpe_hosts:
-
-List of hosts allowed to contact the nrpe daemon, IP or or IP/bit mask (i.e. 192.168.1.0/24) are supported
-
-    ansible_role_nrpe_command_timeout:
-
-Timeout in seconds for nrpe commands, after timeout has expired nrpe will kill the command process.
-
-    ansible_role_nrpe_connection_timeout:
-
-Timeout in seconds for establishing connections to nrpe.
-
-    ansible_role_nrpe_queuesize;
-
-Listen queue size (backlog) for serving incoming connections, increase this value if load is high.
-
-    ansible_role_nrpe_server_address:
-
-Address that nrpe should bind to in case there are more than one interface, use "{{ ansible_default_ipv4.address }}" to use primary IP.
-
-    ansible_role_nrpe_commands:
-
-A list of commands, paths and arguments to be added to /etc/nrpe.d/custom_commands.cfg. The role will replace this file with contents from these variables. See sample configuration for syntax.
-
-    ansible_role_nrpe_scripts:
-
-A list of custom scripts to be added to /usr/local/scripts. name sets the name of the scripts, state should be set to absent or present and data contains the script. Data variable should be followed by | then the script on the following line. See sample for syntax
-
+| Variable | Required | Default | Comments |
+| -------- | -------- | ------- | -------- |
+| `ansible_role_nrpe_extra_packages` | No | [] | List of extra packages to install, should contain a list of nagios plugins needed for checks. |
+| `ansible_role_nrpe_port` | No | 5666 | Listening port for nrpe daemon, must be an non-privileged port (i.e > 1024). |
+| `ansible_role_nrpe_hosts` | No | [] | List of hosts allowed to contact the nrpe daemon, IP or or IP/bit mask (i.e. 192.168.1.0/24) are supported |
+| `ansible_role_nrpe_command_timeout` | No | 60 | Timeout in seconds for nrpe commands, after timeout has expired nrpe will kill the command process. |
+| `ansible_role_nrpe_connection_timeout` | No | 300 | Timeout in seconds for establishing connections to nrpe. |
+| `ansible_role_nrpe_queuesize` | No | 5 | Listen queue size (backlog) for serving incoming connections, increase this value if load is high. |
+| `ansible_role_nrpe_server_address` | No | | Address that nrpe should bind to in case there are more than one interface, use "{{ ansible_default_ipv4.address }}" to use primary IP. |
+| `ansible_role_nrpe_commands` | No | [] | A list of commands, paths and arguments to be added to /etc/nrpe.d/custom_commands.cfg. The role will replace this file with contents from these variables. See example playbook for syntax. |
+| `ansible_role_nrpe_scripts` | No | [] | A list of custom scripts to be added to /usr/local/scripts. `name` sets the name of the scripts, `state` should be set to absent or present and `data` contains the script. `data` should be followed by `\|` then the script on the following line. See example playbook for syntax. |
 
 
 Dependencies

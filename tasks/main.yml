@@ -1,10 +1,19 @@
 ---
+
+- name: Assert that we're running on a Red Hat family OS
+  ansible.builtin.assert:
+    that:
+      - ansible_os_family == "RedHat"
+    fail_msg: 'This role is only supported on Red Hat family distributions'
+
 - name: Include variables specific for the distribution.
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_items:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
-- block:
-    - import_tasks: install.yml
-    - import_tasks: configure.yml
-  when: ansible_os_family == "RedHat"
+- name: Import install tasks.
+  ansible.builtin.import_tasks:
+    file: install.yml
+- name: Import configure tasks.
+  ansible.builtin.import_tasks:
+    file: configure.yml

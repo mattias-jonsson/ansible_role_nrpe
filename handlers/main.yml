@@ -1,7 +1,7 @@
 ---
 
-- name: restart nrpe
+- name: Restart nrpe
   become: true
-  service:
+  ansible.builtin.service:
     name: nrpe
     state: restarted

@@ -13,6 +13,6 @@ galaxy_info:
   role_name: ansible_role_nrpe
   license: MIT
   platforms:
-  - name: EL
-    versions:
-    - "7"
+    - name: EL
+      versions:
+        - "7"
